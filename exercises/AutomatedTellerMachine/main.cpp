@@ -5,81 +5,104 @@
 using namespace std;
 
 // Aspect for logging transactions
-class LoggerAspect {
+class LoggerAspect
+{
 public:
-    static void LogTransaction(const string& accountType, double amount) {
+    static void LogTransaction(const string &accountType, double amount)
+    {
         cout << "Transaction logged - Account Type: " << accountType << ", Amount: " << amount << endl;
     }
 };
 
 // Base account class
-class Account {
+class Account
+{
 protected:
     double balance;
 
 public:
     Account(double initialBalance) : balance(initialBalance) {}
 
-    double GetBalance() const {
+    double GetBalance() const
+    {
         return balance;
     }
 
-    virtual void Withdraw(double amount) {
-        if (amount > 0 && amount <= balance) {
+    virtual void Withdraw(double amount)
+    {
+        if (amount > 0 && amount <= balance)
+        {
             balance -= amount;
             LoggerAspect::LogTransaction("Generic", amount);
-        } else {
+        }
+        else
+        {
             cout << "Insufficient balance or invalid amount." << endl;
         }
     }
 };
 
 // Checking account class
-class CheckingAccount : public Account {
+class CheckingAccount : public Account
+{
 public:
     CheckingAccount(double initialBalance) : Account(initialBalance) {}
 
-    void Withdraw(double amount) override {
-        if (amount > 0 && amount <= balance) {
+    void Withdraw(double amount) override
+    {
+        if (amount > 0 && amount <= balance)
+        {
             balance -= amount;
             LoggerAspect::LogTransaction("Checking", amount);
-        } else {
+        }
+        else
+        {
             cout << "Insufficient balance or invalid amount." << endl;
         }
     }
 };
 
 // Savings account class
-class SavingsAccount : public Account {
+class SavingsAccount : public Account
+{
 public:
     SavingsAccount(double initialBalance) : Account(initialBalance) {}
 
-    void Withdraw(double amount) override {
-        if (amount > 0 && amount <= balance) {
+    void Withdraw(double amount) override
+    {
+        if (amount > 0 && amount <= balance)
+        {
             balance -= amount;
             LoggerAspect::LogTransaction("Savings", amount);
-        } else {
+        }
+        else
+        {
             cout << "Insufficient balance or invalid amount." << endl;
         }
     }
 };
 
 // Investment account class
-class InvestmentAccount : public Account {
+class InvestmentAccount : public Account
+{
 public:
     InvestmentAccount(double initialBalance) : Account(initialBalance) {}
-
-    void Withdraw(double amount) override {
-        if (amount > 0 && amount <= balance) {
+    void Withdraw(double amount) override
+    {
+        if (amount > 0 && amount <= balance)
+        {
             balance -= amount;
             LoggerAspect::LogTransaction("Investment", amount);
-        } else {
+        }
+        else
+        {
             cout << "Insufficient balance or invalid amount." << endl;
         }
     }
 };
 
-int main() {
+int main()
+{
     // Create accounts
     CheckingAccount checkingAccount(500);
     SavingsAccount savingsAccount(1000);
